@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import client from '../ult/API'
+// import client from '../ult/API'
 // import {createClient} from 'contentful'
 // import 'bulma/css/bulma.css'
 
@@ -10,56 +10,57 @@ export class ProjectPost extends Component {
         super(props)
     
         this.state = {
-          post: []
+          post: {}
         }
+
     }
     
       
-    componentDidMount(){  
-        const params = this.props
-
-        if(params && params.slug){
-            client.getEntries({'content_type': 'blogPost', 'fields.slug': params }).then(res => {
-                // console.log(res.items)
-                this.setState({post: res.items})
-            })
-        }
-
-    }
+    // componentDidMount(){  
+    //     const post = this.props.selected
+    // }
       
     
       render() {
-        const post = this.state.post.fields;
-        const title = post.title;
-        const content = post.content;
+     
 
-        if(!this.state.post){
+        if(!this.props.selected){
             return (
                 <h1>Not Found </h1>
             );
-        }
+        } else {
+            // () => this.setState({post: {...this.props.selected}})
+            const post = this.props.selected;
+            const title = post.title;
+            const content = post.content;
 
-        return (
-            <div className = 'section'>
-                <div className = 'content is-medium'>
 
-                <h1 class="title">{title}</h1>
-                <hr/>
-                <article class="media">
 
-                <div class="media-content">
-                    <div class="content">
-                        <p>{content} </p>
+            // console.log = (`this is `)
+            return (
+                <div className = 'section'>
+                    <div className = 'content is-medium'>
+    
+                    <h1 className ="title">{title}</h1>
+                    <hr/>
+                    <article className ="media">
+    
+                    <div className ="media-content">
+                        <div className ="content">
+                            <p>{content}</p>
+                        </div>
+                    </div>
+    
+                    </article>
+    
                     </div>
                 </div>
+    
+                  
+            );
+        }
 
-                </article>
-
-                </div>
-            </div>
-
-              
-        );
+     
       }
 
     }
