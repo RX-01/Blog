@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import client from '../ult/API'
 // import {createClient} from 'contentful'
 // import 'bulma/css/bulma.css'
+import {  Redirect} from 'react-router-dom'
 
 
 export class ProjectPost extends Component {
@@ -15,22 +16,31 @@ export class ProjectPost extends Component {
 
     }
     
-      
-    // componentDidMount(){  
-    //     const post = this.props.selected
+    // componentWillUnmount() {
+    //     <Redirect to={{
+    //         pathname: '/projects',
+    //         past: this.state.selectedPost
+    //       }}/>
     // }
+  
       
+  
     
       render() {
-     
 
-        if(!this.props.selected){
+    
+         
+
+
+        if(!this.props.location.the_post){
             return (
-                <h1>Not Found </h1>
+                           
+                 <Redirect push to="/projects"/> 
+               
             );
         } else {
             // () => this.setState({post: {...this.props.selected}})
-            const post = this.props.selected;
+            const post = this.props.location.the_post;
             const title = post.title;
             const content = post.content;
 
@@ -39,6 +49,15 @@ export class ProjectPost extends Component {
             // console.log = (`this is `)
             return (
                 <div className = 'section'>
+
+                <nav className="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+                <ul>
+                  <li><a href="/projects">Projects</a></li>
+                
+                  <li className="is-active"><a href="/project" aria-current="page">{title}</a></li>
+                </ul>
+              </nav>
+
                     <div className = 'content is-medium'>
     
                     <h1 className ="title">{title}</h1>

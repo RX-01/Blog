@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
-import client from './components/ult/API'
+// import client from './components/ult/API'
 import { ProjectList, ProjectPost } from './components/projects'
-import { Navigation } from './components/pages'
+// import { CSSTransitionGroup } from 'react-transition-group'
+import { Navigation, About, Contact, Home, NoMatch} from './components/pages'
 import 'bulma/css/bulma.css'
+
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom'
 
 
 
@@ -13,27 +21,37 @@ class App extends Component {
     super(props)
 
     this.state = {
-      entries: [],
-      selectedPost: null
-    }
-}
+      something: [],
 
-  
-componentDidMount(){  
-  client.getEntries({'content_type': 'blogPost'}).then(res => {
-    // console.log(res.items)
-    this.setState({entries: res.items})
-  })
 }
+  }
 
   render() {
 
     return (
       <div className="container is-fluid">
       
-        <Navigation/>
-        <ProjectList entries = {this.state.entries} OnSelectedPost = {post => this.setState({selectedPost: post})}/>
-        <ProjectPost selected = {this.state.selectedPost}/>
+      <Router>
+      <div>
+  
+        <Navigation/> 
+        <Switch>
+  
+        <Route exact path="/" component={Home}/> 
+        <Route strict path="/projects" component={ProjectList}/>
+        <Route strict path="/about" component={About}/>
+        <Route strict path="/contact" component={Contact}/>
+        <Route strict path="/project/:id?" component={ProjectPost}/>
+        <Route component={NoMatch}/>
+       
+        </Switch>
+      
+      </div>
+    </Router>
+
+
+
+ 
         
       </div>
     );
@@ -41,3 +59,7 @@ componentDidMount(){
 }
 
 export default App;
+  
+// <ProjectList entries = {this.state.entries} OnSelectedPost = {post => this.setState({selectedPost: post})}/>
+//<Route strict path="/projects" render = {(...props) => <ProjectPost {...props} selected = {this.state.selectedPost} />}/>
+// <ProjectPost selected = {this.state.selectedPost}/>

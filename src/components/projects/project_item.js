@@ -6,7 +6,7 @@ export const ProjectItem = (props) => {
 
     const post = props.posts.fields;
     const title = post.title;
-    const slug_path = post.slug;
+    // const slug_path = post.slug;
     
     // const content = post.content;
     const published = post.publishedDate;
@@ -17,7 +17,7 @@ export const ProjectItem = (props) => {
     const f_img = post.featuredImg.fields.file.url;
 
     //funtion call
-    const selected_post = props.OnPost;
+    const selected_post = props.OnSelectedPost;
 
     // proptypes
 

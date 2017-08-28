@@ -1,4 +1,6 @@
 export { About } from './about_page'
 export { Projects } from './project_page'
 export { Contact } from './contact_page'
+export { Home } from './home'
+export { NoMatch } from './404'
 export { Navigation } from './nav'
