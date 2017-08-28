@@ -35,16 +35,16 @@ class App extends Component {
       <div>
   
         <Navigation/> 
-        <Switch>
+        
   
         <Route exact path="/" component={Home}/> 
         <Route strict path="/projects" component={ProjectList}/>
         <Route strict path="/about" component={About}/>
         <Route strict path="/contact" component={Contact}/>
         <Route strict path="/project/:id?" component={ProjectPost}/>
-        <Route component={NoMatch}/>
+        
        
-        </Switch>
+        
       
       </div>
     </Router>
